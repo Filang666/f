@@ -1,7 +1,6 @@
 from bs4 import BeautifulSoup
 import requests
-import shutil
-import os
+from move import move
 
 url = 'https://sortavala-school1.ru/life/schedule1/#'
 page = requests.get(url)
@@ -14,5 +13,4 @@ for a in soup.findAll('a', class_='mr-1 sf-link sf-link-theme sf-link-dashed'):
 	with open(fileName, "wb") as file:
 		response = requests.get('https://sortavala-school1.ru' + name)	
 		file.write(response.content)
-	shutil.copy(os.path.join('.', fileName), os.path.join('pdf'))
-	os.remove(os.path.join('.', fileName))
+	move('pdf', fileName)
