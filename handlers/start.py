@@ -3,7 +3,6 @@ from aiogram import F
 from aiogram.filters import CommandStart, Command
 from aiogram.types import Message, KeyboardButton, ReplyKeyboardMarkup, FSInputFile
 from pdftoimage import rasp
-import os
 
 start_router = Router()
 
@@ -30,43 +29,30 @@ async def cmd_start(message: Message):
     keyboard = ReplyKeyboardMarkup(keyboard=kb)
     await message.answer("Выбери свой класс", reply_markup=keyboard)
 def chooseday(urclass):
-    @start_router.message(Command("%s" % urclass))
+    @start_router.message(Command(f"{urclass}"))
     async def choose(message: Message):
         await message.answer("Спасибо за ответ!")
         kb = [
-            [KeyboardButton(text="/Понедельник %s" % urclass)],
-            [KeyboardButton(text="/Вторник %s" % urclass)],
-            [KeyboardButton(text="/Среда %s" % urclass)],
-            [KeyboardButton(text="/Четверг %s" % urclass)],
-            [KeyboardButton(text="/Пятница %s" % urclass)],
-            [KeyboardButton(text="/Суббота %s" % urclass)],
+            [KeyboardButton(text=f"/Понедельник{urclass}")],
+            [KeyboardButton(text=f"/Вторник{urclass}")],
+            [KeyboardButton(text=f"/Среда{urclass}")],
+            [KeyboardButton(text=f"/Четверг{urclass}")],
+            [KeyboardButton(text=f"/Пятница{urclass}")],
+            [KeyboardButton(text=f"/Суббота{urclass}")],
         ]
         keyboard = ReplyKeyboardMarkup(keyboard=kb)
         await message.answer("Выбери день", reply_markup=keyboard)
 
-chooseday("5А")
-chooseday("5Б")
-chooseday("6А")
-chooseday("6Б")
-chooseday("6В")
-chooseday("7А")
-chooseday("7Б")
-chooseday("7В")
-chooseday("8А")
-chooseday("8Б")
-chooseday("9А")
-chooseday("9Б")
-chooseday("10А")
-chooseday("10Б")
-chooseday("11А")
-chooseday("11Б")
+chooseday("5А"), chooseday("5Б"), chooseday("6А"), chooseday("6Б"), chooseday("6В"), chooseday("7А"), chooseday("7Б"), chooseday("7В"), chooseday("8А"), chooseday("8Б"), chooseday("9А"), chooseday("9Б"), chooseday("10А"), chooseday("10Б"), chooseday("11А"), chooseday("11Б")
+
 def sendphoto(urclass1, Day):
-    @start_router.message(Command("%s " % Day + "%s" % urclass1))
+    print(f"{Day} {urclass1}")
+    @start_router.message(Command(f"{Day}{urclass1}"))
     async def upload_photo(message: Message):
-        image_from_pc = FSInputFile("./image" + "%s" % Day + "%s" % urclass1 + ".jpg")
+        image_from_pc = FSInputFile(f".\image\{Day}{urclass1}.jpg")
         result = await message.answer_photo(
         image_from_pc,
-        caption="%s" % Day + "%s" + urclass1
+        caption=f"{Day} {urclass1}"
     )
 sendphoto("5А", "Понедельник"), sendphoto("5А", "Вторник"), sendphoto("5А", "Среда"), sendphoto("5А", "Четверг"), sendphoto("5А", "Пятница"), sendphoto("5А", "Суббота")
 sendphoto("5Б", "Понедельник"), sendphoto("5Б", "Вторник"), sendphoto("5Б", "Среда"), sendphoto("5Б", "Четверг"), sendphoto("5Б", "Пятница"), sendphoto("5Б", "Суббота")

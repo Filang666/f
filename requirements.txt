@@ -4,3 +4,4 @@ APScheduler
 python-decouple
 beautifulsoup4
 requests
+pdf2image
