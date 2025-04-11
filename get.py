@@ -8,7 +8,6 @@ page = requests.get(url)
 soup = BeautifulSoup(page.text, "html.parser")
 print(page.status_code)
 
-
 for a in soup.findAll('a', class_='mr-1 sf-link sf-link-theme sf-link-dashed'):
 	name = a['href']
 	fileName = name[19:len(name)]
