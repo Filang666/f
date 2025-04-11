@@ -1,2 +1,1 @@
-Project for my school
-im noob ;P
+Project for my school. Im noob ;P
