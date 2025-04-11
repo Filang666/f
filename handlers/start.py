@@ -5,7 +5,6 @@ from aiogram.types import Message, KeyboardButton, ReplyKeyboardMarkup, FSInputF
 from pdftoimage import rasp
 
 start_router = Router()
-
 @start_router.message(CommandStart())
 async def cmd_start(message: Message):
     kb = [
@@ -39,12 +38,35 @@ def chooseday(urclass):
             [KeyboardButton(text=f"/Четверг{urclass}")],
             [KeyboardButton(text=f"/Пятница{urclass}")],
             [KeyboardButton(text=f"/Суббота{urclass}")],
+            [KeyboardButton(text=f"/Назад")],
         ]
         keyboard = ReplyKeyboardMarkup(keyboard=kb)
         await message.answer("Выбери день", reply_markup=keyboard)
 
 chooseday("5А"), chooseday("5Б"), chooseday("6А"), chooseday("6Б"), chooseday("6В"), chooseday("7А"), chooseday("7Б"), chooseday("7В"), chooseday("8А"), chooseday("8Б"), chooseday("9А"), chooseday("9Б"), chooseday("10А"), chooseday("10Б"), chooseday("11А"), chooseday("11Б")
-
+@start_router.message(Command("Назад"))
+async def back(message: Message):
+    kb = [
+        [KeyboardButton(text="/5А")],
+        [KeyboardButton(text="/5Б")],
+        [KeyboardButton(text="/6А")],
+        [KeyboardButton(text="/6Б")],
+        [KeyboardButton(text="/6В")],
+        [KeyboardButton(text="/7А")],
+        [KeyboardButton(text="/7Б")],
+        [KeyboardButton(text="/7В")],
+        [KeyboardButton(text="/8А")],
+        [KeyboardButton(text="/8Б")],
+        [KeyboardButton(text="/9А")],
+        [KeyboardButton(text="/9Б")],
+        [KeyboardButton(text="/10А")],
+        [KeyboardButton(text="/10Б")],
+        [KeyboardButton(text="/11А")],
+        [KeyboardButton(text="/11Б")]
+    ]
+    keyboard = ReplyKeyboardMarkup(keyboard=kb)
+    await message.answer("Выбери свой класс", reply_markup=keyboard)
+    
 def sendphoto(urclass1, Day):
     print(f"{Day} {urclass1}")
     @start_router.message(Command(f"{Day}{urclass1}"))
