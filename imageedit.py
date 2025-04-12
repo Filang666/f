@@ -2,11 +2,11 @@ from PIL import Image
 import os
 from move import move
 
-listclass = ["7А", "7Б", "7В"]
-listclass1 = ["6А", "6Б", "6В", "5А", "5Б"]
-listclass3 = ["11А", "11Б", "10А"]
-listclass4 = [ "10Б", "9А", "9Б", "8А", "8Б"]
 def startedit():
+    listclass = ["7А", "7Б", "7В"]
+    listclass1 = ["6А", "6Б", "6В", "5А", "5Б"]
+    listclass3 = ["11А", "11Б", "10А"]
+    listclass4 = [ "10Б", "9А", "9Б", "8А", "8Б"]
     def editor(xcoor, ycoor, urlist, name):
         for size1 in range(len(urlist)):
             cropimg = img.crop((xcoor + 370*size1, ycoor, xcoor + 370 + 370*size1, ycoor+900))
@@ -28,4 +28,3 @@ def startedit():
             editor(2020, 1800, listclass1, path)
             editor(980, 470, listclass3, path)
             editor(2020, 470, listclass4, path)
-startedit()
