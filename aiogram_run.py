@@ -1,7 +1,6 @@
 import asyncio
 from create_bot import bot, dp, scheduler
 from handlers.start import start_router
-from parsing1 import parsing
 from pdftoimage import converter
 # from work_time.time_func import send_time_msg
 
