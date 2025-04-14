@@ -32,4 +32,3 @@ def fullcheck():
     checkrename("Четверг")
     checkrename("Пятница")
     checkrename("Суббота")
-fullcheck()

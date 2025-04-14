@@ -1,11 +1,14 @@
 from bs4 import BeautifulSoup
 import requests
 from move import move
-import os
-import io
+from shutil import rmtree
+from os import mkdir
+
 
 def pars():
-	days = ["Вторник", "Суббота", "Пятница", "Четверг", "Среда", "Вторник"]
+	rmtree("pdf")
+	mkdir("pdf")
+	days = ["Вторник", "Суббота", "Пятница", "Четверг", "Среда", "Понедельник"]
 	url = 'https://sortavala-school1.ru/life/schedule1/#'
 	page = requests.get(url)
 	soup = BeautifulSoup(page.text, "html.parser")
@@ -17,4 +20,3 @@ def pars():
 			response = requests.get('https://sortavala-school1.ru' + name)	
 			file.write(response.content)
 		move('pdf', fileName)
-pars()
