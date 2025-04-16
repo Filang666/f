@@ -3,6 +3,7 @@ from aiogram import F
 from aiogram.filters import CommandStart, Command
 from aiogram.types import Message, KeyboardButton, ReplyKeyboardMarkup, FSInputFile
 
+
 start_router = Router()
 @start_router.message(CommandStart())
 async def cmd_start(message: Message):
@@ -93,3 +94,12 @@ sendphoto("10А", "Понедельник"), sendphoto("10А", "Вторник")
 sendphoto("10Б", "Понедельник"), sendphoto("10Б", "Вторник"), sendphoto("10Б", "Среда"), sendphoto("10Б", "Четверг"), sendphoto("10Б", "Пятница"), sendphoto("10Б", "Суббота")
 sendphoto("11А", "Понедельник"), sendphoto("11А", "Вторник"), sendphoto("11А", "Среда"), sendphoto("11А", "Четверг"), sendphoto("11А", "Пятница"), sendphoto("11А", "Суббота")
 sendphoto("11Б", "Понедельник"), sendphoto("11Б", "Вторник"), sendphoto("11Б", "Среда"), sendphoto("11Б", "Четверг"), sendphoto("11Б", "Пятница"), sendphoto("11Б", "Суббота")
+
+
+@start_router.message(Command("скиньхуй"))
+async def sendhui(message: Message):
+    if message.from_user.id in (1193425859, 5191099515):
+        await message.answer_photo(FSInputFile(f".\hui.jpg"))
+    else:
+        await message.answer("Пошел нахуй!")
+        print(message.from_user.id)

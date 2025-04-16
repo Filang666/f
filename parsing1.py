@@ -5,6 +5,7 @@ from shutil import rmtree
 from os import mkdir
 
 
+
 def pars():
 	rmtree("pdf")
 	mkdir("pdf")
