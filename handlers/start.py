@@ -2,6 +2,7 @@ from aiogram import Router
 from aiogram import F
 from aiogram.filters import CommandStart, Command
 from aiogram.types import Message, KeyboardButton, ReplyKeyboardMarkup, FSInputFile
+from create_bot import admins
 
 
 start_router = Router()
@@ -98,7 +99,7 @@ sendphoto("11Б", "Понедельник"), sendphoto("11Б", "Вторник")
 
 @start_router.message(Command("скиньхуй"))
 async def sendhui(message: Message):
-    if message.from_user.id in (1193425859, 5191099515):
+    if message.from_user.id in admins:
         await message.answer_photo(FSInputFile(f".\hui.jpg"))
     else:
         await message.answer("Пошел нахуй!")

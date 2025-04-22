@@ -32,3 +32,4 @@ def startedit():
             if filename == "image\Вторник.jpg": classfull(1500)
             if filename == "image\Понедельник.jpg": classfull(1150)
             if filename == "image\Пятница.jpg": classfull(2080)
+            

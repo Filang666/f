@@ -13,3 +13,4 @@ def converter():
         for count, page in enumerate(pages):
             page.save(f'{i[:-4]}.jpg', 'JPEG')
             move('image', f'{i[:-4]}.jpg')
+

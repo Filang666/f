@@ -1,5 +1,5 @@
 import asyncio
-from create_bot import bot, dp, scheduler
+from create_bot import bot, dp
 from handlers.start import start_router
 from parsing1 import pars
 from pdftoimage import converter
@@ -14,8 +14,12 @@ async def main():
     converter()
     startedit()
     dp.include_router(start_router)
-    await bot.delete_webhook(drop_pending_updates=True)
-    await dp.start_polling(bot)
+    try:
+        await bot.delete_webhook(drop_pending_updates=True)
+        await dp.start_polling(bot, allowed_updates=dp.resolve_used_update_types())
+    finally:
+        await bot.session.close()
+
 
 if __name__ == "__main__":
     asyncio.run(main())
